@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RSA Cryptography System — FCAI Number Theory Project</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════
+       APP SHELL  (sidebar + main)
+  ══════════════════════════════════════════════════ -->
+  <div class="app-shell">
+
+    <!-- ── SIDEBAR ──────────────────────────────────── -->
+    <aside class="sidebar">
+
+      <!-- Branding -->
+      <div class="sb-brand">
+        <span class="sb-logo">🔐&nbsp;&nbsp;RSA CRYPTO</span>
+        <span class="sb-sub">&nbsp;&nbsp;&nbsp;&nbsp;SYSTEM&nbsp;&nbsp;v2.0</span>
+      </div>
+
+      <div class="sb-divider"></div>
+
+      <!-- Navigation -->
+      <nav class="sb-nav">
+        <button class="nav-btn active" data-tab="rsa">🔑&nbsp;&nbsp;RSA Cipher</button>
+        <button class="nav-btn"        data-tab="affine">🔤&nbsp;&nbsp;Affine Cipher</button>
+        <button class="nav-btn"        data-tab="credits">👥&nbsp;&nbsp;Project Info</button>
+      </nav>
+
+      <div class="sb-divider"></div>
+
+      <!-- Metadata -->
+      <div class="sb-meta">
+        <span class="meta-label">SUBJECT</span>
+        <span class="meta-value">Number Theory</span>
+        <span class="meta-label">FACULTY</span>
+        <span class="meta-value">FCAI</span>
+        <span class="meta-label">INSTRUCTOR</span>
+        <span class="meta-value">Eng. Farida Azab</span>
+      </div>
+
+      <div class="sb-spacer"></div>
+      <div class="sb-footer">FCAI&nbsp;&nbsp;•&nbsp;&nbsp;2025</div>
+    </aside>
+
+    <!-- ── MAIN AREA ──────────────────────────────────── -->
+    <div class="main-area">
+
+      <!-- Header bar -->
+      <header class="top-header">
+        <span class="hdr-title">Applied Number Theory Project</span>
+        <span class="hdr-status">● SECURE SESSION</span>
+      </header>
+
+      <!-- Page container -->
+      <div class="page-container">
+
+        <!-- ════════ PAGE: RSA ════════ -->
+        <section class="page" id="page-rsa">
+
+          <div class="page-title-block">
+            <h2>🔑&nbsp;&nbsp;RSA Cipher</h2>
+            <p>Public-key encryption via modular exponentiation</p>
+          </div>
+          <div class="title-sep"></div>
+
+          <!-- Parameters card -->
+          <div class="card" id="card-params">
+            <div class="card-header">RSA Parameters</div>
+            <div class="card-body params-body">
+              <div class="param-row">
+                <label class="param-label">p&nbsp;&nbsp;(prime)</label>
+                <input class="param-input" id="p-entry" type="text" value="3" />
+
+                <label class="param-label">q&nbsp;&nbsp;(prime)</label>
+                <input class="param-input" id="q-entry" type="text" value="11" />
+
+                <label class="param-label">e&nbsp;&nbsp;(pub key)</label>
+                <input class="param-input" id="e-entry" type="text" value="7" />
+
+                <button class="btn-compute" id="btn-compute-keys">⚙&nbsp;&nbsp;Compute Keys</button>
+              </div>
+              <div class="key-info" id="rsa-key-info">
+                &nbsp;&nbsp;n = ?&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;φ(n) = ?&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;d (private key) = ?
+              </div>
+            </div>
+          </div>
+
+          <!-- Input card -->
+          <div class="card">
+            <div class="card-header">Plaintext / Ciphertext Input</div>
+            <div class="card-body">
+              <label class="field-label">Enter text (letters only, e.g. HELLO):</label>
+              <input class="text-input" id="rsa-input" type="text"
+                     placeholder="Type your message..." />
+              <div class="btn-row">
+                <button class="btn-enc" id="btn-rsa-enc">🔒&nbsp;&nbsp;ENCRYPT</button>
+                <button class="btn-dec" id="btn-rsa-dec">🔓&nbsp;&nbsp;DECRYPT</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Output card -->
+          <div class="card">
+            <div class="card-header">Execution Details &amp; Result</div>
+            <div class="card-body">
+              <pre class="output-box" id="rsa-result">[ RSA ENGINE READY ]
+
+  1. Set p, q, e above and press ⚙ Compute Keys
+  2. Type your message
+  3. Press ENCRYPT or DECRYPT</pre>
+            </div>
+          </div>
+
+        </section><!-- /page-rsa -->
+
+        <!-- ════════ PAGE: AFFINE ════════ -->
+        <section class="page hidden" id="page-affine">
+
+          <div class="page-title-block">
+            <h2>🔤&nbsp;&nbsp;Affine Cipher</h2>
+            <p>Linear substitution cipher&nbsp;&nbsp;—&nbsp;&nbsp;C = (aM + b) mod 26</p>
+          </div>
+          <div class="title-sep"></div>
+
+          <!-- Params info card -->
+          <div class="card">
+            <div class="card-header">Cipher Parameters (Fixed)</div>
+            <div class="card-body">
+              <pre class="affine-formula">  Encryption  :  C  =  (3M + 9) mod 26
+  Decryption  :  M  =  (9C − 3)  mod 26
+
+  where  M = letter index  (A=1 … Z=26)</pre>
+            </div>
+          </div>
+
+          <!-- Input card -->
+          <div class="card">
+            <div class="card-header">Enter Message</div>
+            <div class="card-body">
+              <label class="field-label">Type your message below:</label>
+              <textarea class="text-area" id="affine-input" rows="4"
+                        placeholder="Type your message..."></textarea>
+              <div class="btn-row">
+                <button class="btn-enc" id="btn-affine-enc">🔒&nbsp;&nbsp;ENCRYPT</button>
+                <button class="btn-dec" id="btn-affine-dec">🔓&nbsp;&nbsp;DECRYPT</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Output card -->
+          <div class="card">
+            <div class="card-header">Result</div>
+            <div class="card-body">
+              <pre class="output-box" id="affine-result">[ AFFINE ENGINE READY ]
+
+Enter text and press ENCRYPT or DECRYPT.</pre>
+            </div>
+          </div>
+
+        </section><!-- /page-affine -->
+
+        <!-- ════════ PAGE: CREDITS ════════ -->
+        <section class="page hidden" id="page-credits">
+
+          <div class="page-title-block">
+            <h2>👥&nbsp;&nbsp;Project Credits</h2>
+            <p>Development team &amp; project details</p>
+          </div>
+          <div class="title-sep"></div>
+
+          <!-- Project details card -->
+          <div class="card">
+            <div class="card-header">Project Details</div>
+            <div class="card-body">
+              <table class="details-table">
+                <tr><td class="dt-label">📚&nbsp;&nbsp;Subject</td>    <td class="dt-val">Applied Number Theory</td></tr>
+                <tr><td class="dt-label">🏛&nbsp;&nbsp;Faculty</td>    <td class="dt-val">Faculty of Computers &amp; AI&nbsp;&nbsp;(FCAI)</td></tr>
+                <tr><td class="dt-label">🎓&nbsp;&nbsp;Instructor</td> <td class="dt-val">Eng. Farida Azab</td></tr>
+                <tr><td class="dt-label">🗂&nbsp;&nbsp;Topic</td>      <td class="dt-val">RSA &amp; Affine Cipher Implementation</td></tr>
+                <tr><td class="dt-label">📅&nbsp;&nbsp;Year</td>       <td class="dt-val">2024 / 2025</td></tr>
+              </table>
+            </div>
+          </div>
+
+          <!-- Team card -->
+          <div class="card">
+            <div class="card-header">Development Team</div>
+            <div class="card-body team-body">
+              <div class="member-row">
+                <span class="member-icon">◈</span>
+                <span class="member-name">Mostafa Ali Maher</span>
+                <span class="member-id">ID: 20250726</span>
+              </div>
+              <div class="member-row">
+                <span class="member-icon">◈</span>
+                <span class="member-name">Omar Mohammed Abdallah</span>
+                <span class="member-id">ID: 20250643</span>
+              </div>
+              <div class="member-row">
+                <span class="member-icon">◈</span>
+                <span class="member-name">Mahmoud Nabil Ahmed</span>
+                <span class="member-id">ID: 20250708</span>
+              </div>
+              <div class="member-row">
+                <span class="member-icon">◈</span>
+                <span class="member-name">Abdallah Shams Saeed</span>
+                <span class="member-id">ID: 20250621</span>
+              </div>
+              <div class="member-row">
+                <span class="member-icon">◈</span>
+                <span class="member-name">Youssef Mohammed Elngar</span>
+                <span class="member-id">ID: 20240195</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer card -->
+          <div class="credits-footer-card">
+            Built with Python&nbsp;&nbsp;•&nbsp;&nbsp;Flask&nbsp;&nbsp;•&nbsp;&nbsp;HTML / CSS / JS<br />
+            RSA Cryptography&nbsp;&nbsp;•&nbsp;&nbsp;Applied Number Theory&nbsp;&nbsp;•&nbsp;&nbsp;FCAI 2025
+          </div>
+
+        </section><!-- /page-credits -->
+
+      </div><!-- /page-container -->
+    </div><!-- /main-area -->
+  </div><!-- /app-shell -->
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
